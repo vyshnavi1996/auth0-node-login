@@ -1,5 +1,12 @@
 # 01-Login
 
+## Example From
+
+Example repo from https://github.com/auth0-samples:
+https://github.com/auth0-samples/auth0-nodejs-webapp-sample
+
+Just the 01-Login folder, adjusted for Heroku deployment.
+
 ## Running the Sample
 
 Install the dependencies.
