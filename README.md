@@ -2,10 +2,10 @@
 
 ## Example From
 
-Example repo from https://github.com/auth0-samples:
-https://github.com/auth0-samples/auth0-nodejs-webapp-sample
+Example repo from the many samples at https://github.com/auth0-samples
 
-Just the 01-Login folder, adjusted for Heroku deployment.
+- [Node and Express - Regular Web App](https://github.com/auth0-samples/auth0-nodejs-webapp-sample)
+- This repo has just the 01-Login folder, adjusted for Heroku deployment.
 
 ## Running the Sample
 
