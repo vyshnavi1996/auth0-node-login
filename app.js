@@ -50,6 +50,8 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(cookieParser());
+app.use('/favicon.ico', express.static('images/favicon.ico'));
+
 
 // config express-session
 var sess = {
