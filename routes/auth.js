@@ -41,7 +41,14 @@ router.get('/logout', (req, res) => {
       var returnTo = req.protocol + '://' + req.hostname;
       var port = req.connection.localPort;
       if (port !== undefined && port !== 80 && port !== 443) {
-        returnTo += ':' + port;
+
+        // https://auth0.com/blog/create-a-simple-and-secure-node-express-app/
+        // https://zappysys.zendesk.com/hc/en-us/articles/360012261713-How-to-stop-decode-of-2F-3A-or-other-in-URL-for-REST-API-Call-Google-Search-Console-API-usecase-
+        returnTo =
+          process.env.NODE_ENV === "production"
+            ? `${returnTo}/query--dont-escape--`
+            : `${returnTo}:${port}/query--dont-escape--`;
+
       }
       var logoutURL = new url.URL(
         util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
@@ -53,6 +60,7 @@ router.get('/logout', (req, res) => {
       logoutURL.search = searchString;
       res.redirect(logoutURL);
       //res.redirect('https://<myapp>.auth0.com/v2/logout?client_id=<clientId>&returnTo=http://localhost:3000/');
+      //              https://        auth0.com/v2/logout?client_id=ffffffffff&returnTo=https%3A%2F%2Ftest-auth0-case.herokuapp.com%3A43403
     });
   }
 });
