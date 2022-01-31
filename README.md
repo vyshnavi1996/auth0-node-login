@@ -32,6 +32,29 @@ npm start
 
 The app will be served at `localhost:3000`.
 
+-----
+
+## Two Environments
+
+1. Run locally (on our machine)
+2. Run on the web (hosted with Heroku). 
+
+## Two Ways To Set Configuration
+
+Our configuration information is secret - we manage our config variables differently:
+
+1. Locally, set them in .env (and make sure you add this to .gitignore) 
+2. On Heroku, in Settings / Reveal Config Vars / add and edit to provide the information. 
+
+```Bash
+AUTH0_CALLBACK_URL=http://localhost:3000/callback
+AUTH0_CLIENT_ID={CLIENT_ID}
+AUTH0_CLIENT_SECRET={CLIENT_SECRET}
+AUTH0_DOMAIN={DOMAIN}
+```
+
+-----
+
 ## Running the Sample With Docker
 
 In order to run the example with docker you need to have `docker` installed.
@@ -39,6 +62,8 @@ In order to run the example with docker you need to have `docker` installed.
 You also need to set the environment variables as explained [previously](#running-the-sample).
 
 Execute in command line `sh exec.sh` to run the Docker in Linux, or `.\exec.ps1` to run the Docker in Windows.
+
+-----
 
 ## What is Auth0?
 
