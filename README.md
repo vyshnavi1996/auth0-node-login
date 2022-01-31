@@ -43,7 +43,7 @@ The app will be served at `localhost:3000`.
 
 Our configuration information is secret - we manage our config variables differently:
 
-1. Locally, set them in .env (and make sure you add this to .gitignore) 
+1. Locally, set them in .env (and make sure you add .env to .gitignore). If accidentally committed, remove it from the repo. 
 2. On Heroku, in Settings / Reveal Config Vars / add and edit to provide the information. 
 
 ```Bash
