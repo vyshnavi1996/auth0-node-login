@@ -32,23 +32,29 @@ router.get('/callback', function (req, res, next) {
 // Perform session logout and redirect to homepage
 router.get('/logout', (req, res) => {
   req.logout();
+  //https://community.auth0.com/t/having-trouble-with-logout-on-the-sample-nodejs-app/18172/10
+  if (req.session) {
+    req.session.destroy(function (err) {
+      if (err) { console.log(err) }
+      console.log("Destroyed the user session on Auth0 endpoint");
 
-  var returnTo = req.protocol + '://' + req.hostname;
-  var port = req.connection.localPort;
-  if (port !== undefined && port !== 80 && port !== 443) {
-    returnTo += ':' + port;
+      var returnTo = req.protocol + '://' + req.hostname;
+      var port = req.connection.localPort;
+      if (port !== undefined && port !== 80 && port !== 443) {
+        returnTo += ':' + port;
+      }
+      var logoutURL = new url.URL(
+        util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
+      );
+      var searchString = querystring.stringify({
+        client_id: process.env.AUTH0_CLIENT_ID,
+        returnTo: returnTo
+      });
+      logoutURL.search = searchString;
+      res.redirect(logoutURL);
+      //res.redirect('https://<myapp>.auth0.com/v2/logout?client_id=<clientId>&returnTo=http://localhost:3000/');
+    });
   }
-
-  var logoutURL = new url.URL(
-    util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
-  );
-  var searchString = querystring.stringify({
-    client_id: process.env.AUTH0_CLIENT_ID,
-    returnTo: returnTo
-  });
-  logoutURL.search = searchString;
-
-  res.redirect(logoutURL);
 });
 
 module.exports = router;
