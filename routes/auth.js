@@ -43,11 +43,10 @@ router.get('/logout', (req, res) => {
       if (port !== undefined && port !== 80 && port !== 443) {
 
         // https://auth0.com/blog/create-a-simple-and-secure-node-express-app/
-        // https://zappysys.zendesk.com/hc/en-us/articles/360012261713-How-to-stop-decode-of-2F-3A-or-other-in-URL-for-REST-API-Call-Google-Search-Console-API-usecase-
         returnTo =
           process.env.NODE_ENV === "production"
-            ? `${returnTo}/query--dont-escape--`
-            : `${returnTo}:${port}/query--dont-escape--`;
+            ? `${returnTo}/`
+            : `${returnTo}:${port}`;
 
       }
       var logoutURL = new url.URL(
